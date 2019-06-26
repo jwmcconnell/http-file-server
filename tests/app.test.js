@@ -2,9 +2,9 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 describe('application routes', () => {
-  it('returns a list of dogs', () => {
+  it('returns the index page with a welcom header', () => {
     return request(app)
-      .get('/')
+      .get('/index.html')
       .then(res => {
         expect(res.text).toEqual(expect.stringContaining('<h1>Welcome</h1>'));
       });
