@@ -18,6 +18,14 @@ describe('application routes', () => {
       });
   });
 
+  it('returns the index page with a welcome header when there is an empty path', () => {
+    return request(app)
+      .get('/info.html')
+      .then(res => {
+        expect(res.text).toEqual(expect.stringContaining('<h1>Info</h1>'));
+      });
+  });
+
   it('returns a not found page when the path does not match a file in public', () => {
     return request(app)
       .get('/badpath')
