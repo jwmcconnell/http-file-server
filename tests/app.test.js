@@ -26,6 +26,22 @@ describe('application routes', () => {
       });
   });
 
+  it('returns a page in a sub directory', () => {
+    return request(app)
+      .get('/subdir/index.html')
+      .then(res => {
+        expect(res.text).toEqual(expect.stringContaining('<h1>Sub Index</h1>'));
+      });
+  });
+
+  it('returns a page in a sub directory', () => {
+    return request(app)
+      .get('/subdir/indafasdex.html')
+      .then(res => {
+        expect(res.text).toEqual(expect.stringContaining('<h1>Not Found</h1>'));
+      });
+  });
+
   it('returns a not found page when the path does not match a file in public', () => {
     return request(app)
       .get('/badpath')
