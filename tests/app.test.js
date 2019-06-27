@@ -34,6 +34,14 @@ describe('application routes', () => {
       });
   });
 
+  it('returns another page in a sub directory', () => {
+    return request(app)
+      .get('/subdir/other.html')
+      .then(res => {
+        expect(res.text).toEqual(expect.stringContaining('<h1>Other</h1>'));
+      });
+  });
+
   it('returns a not found page when trying to go outside of public', () => {
     return request(app)
       .get('/../index.html')
