@@ -34,6 +34,14 @@ describe('application routes', () => {
       });
   });
 
+  it('returns a not found page when trying to go outside of public', () => {
+    return request(app)
+      .get('/../index.html')
+      .then(res => {
+        expect(res.text).toEqual(expect.stringContaining('<h1>Not Found</h1>'));
+      });
+  });
+
   it('returns a page in a sub directory', () => {
     return request(app)
       .get('/subdir/indafasdex.html')
