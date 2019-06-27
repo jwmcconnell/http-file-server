@@ -6,6 +6,7 @@ describe('application routes', () => {
     return request(app)
       .get('/index.html')
       .then(res => {
+        expect(res.status).toEqual(200);
         expect(res.text).toEqual(expect.stringContaining('<h1>Welcome</h1>'));
       });
   });
@@ -14,6 +15,7 @@ describe('application routes', () => {
     return request(app)
       .get('/')
       .then(res => {
+        expect(res.status).toEqual(200);
         expect(res.text).toEqual(expect.stringContaining('<h1>Welcome</h1>'));
       });
   });
@@ -22,6 +24,7 @@ describe('application routes', () => {
     return request(app)
       .get('/info.html')
       .then(res => {
+        expect(res.status).toEqual(200);
         expect(res.text).toEqual(expect.stringContaining('<h1>Info</h1>'));
       });
   });
@@ -30,6 +33,7 @@ describe('application routes', () => {
     return request(app)
       .get('/subdir/index.html')
       .then(res => {
+        expect(res.status).toEqual(200);
         expect(res.text).toEqual(expect.stringContaining('<h1>Sub Index</h1>'));
       });
   });
@@ -38,6 +42,7 @@ describe('application routes', () => {
     return request(app)
       .get('/subdir/other.html')
       .then(res => {
+        expect(res.status).toEqual(200);
         expect(res.text).toEqual(expect.stringContaining('<h1>Other</h1>'));
       });
   });
@@ -46,6 +51,7 @@ describe('application routes', () => {
     return request(app)
       .get('/../index.html')
       .then(res => {
+        expect(res.status).toEqual(404);
         expect(res.text).toEqual(expect.stringContaining('<h1>Not Found</h1>'));
       });
   });
@@ -54,6 +60,7 @@ describe('application routes', () => {
     return request(app)
       .get('/subdir/indafasdex.html')
       .then(res => {
+        expect(res.status).toEqual(404);
         expect(res.text).toEqual(expect.stringContaining('<h1>Not Found</h1>'));
       });
   });
@@ -62,6 +69,7 @@ describe('application routes', () => {
     return request(app)
       .get('/badpath')
       .then(res => {
+        expect(res.status).toEqual(404);
         expect(res.text).toEqual(expect.stringContaining('<h1>Not Found</h1>'));
       });
   });
